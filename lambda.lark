@@ -1,0 +1,21 @@
+?decl : (bind "\n")* bind
+bind : VARIABLE ":=" expr
+
+expr : VARIABLE
+     | "(" expr ")"
+     | abstraction
+     | application
+
+abstraction : "lambda" VARIABLE "." expr
+            | "lambda" VARIABLE abstraction
+            | VARIABLE abstraction
+            | VARIABLE "." expr
+
+application : application expr
+            | expr expr
+
+VARIABLE : /(?!lambda)([a-zA-Z])+/
+_BIND : ":="
+
+%import common.WS
+%ignore WS

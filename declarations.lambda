@@ -1,0 +1,8 @@
+T := lambda x y . x
+F := lambda x y . y
+
+AND := lambda p q . p q p
+OR := lambda p q . p p q
+NOT := lambda p . p F T
+
+SELF := lambda w . w w
